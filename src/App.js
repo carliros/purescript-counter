@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { jsCounter as Counter } from './Counter/Components/Counter';
+import { jsCounter as Counter } from './Components/Counter/Interop';
 
 function App() {
   return (
