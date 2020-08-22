@@ -9,6 +9,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
+        <Counter onClick={n => console.log("clicked: ", n)} />
+        <Counter counterType="decrementer" label="Try it out!" />
       </header>
     </div>
   );
