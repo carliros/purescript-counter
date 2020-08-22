@@ -6,6 +6,7 @@ You can edit this file as you like.
 , dependencies =
   [ "console"
   , "effect"
+  , "interpolate"
   , "psci-support"
   , "react-basic-dom"
   , "react-basic-hooks"
