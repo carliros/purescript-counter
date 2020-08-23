@@ -7,6 +7,12 @@ I followed this notes:
 
 In the project directory, you can run:
 
+### start this project
+    npm install
+    npx spago build
+    npm start
+
+
 ### `npm start` This is for purescript
 
 Runs the app in the development mode.<br />
