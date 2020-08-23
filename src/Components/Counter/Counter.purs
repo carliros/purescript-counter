@@ -7,9 +7,9 @@ import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Effect (Effect)
 import React.Basic.DOM (button, div_, p_, text)
-import React.Basic.Events (handler_)
+import React.Basic.Events (EventHandler, handler_)
 import React.Basic.Hooks (Component, component, useState')
-import React.Basic.Hooks as Hooks
+import React.Basic.Hooks as React
 
 type Props = 
   { label :: String
@@ -31,20 +31,22 @@ counterTypeFromString = case _ of
   _ -> Nothing
 
 mkCounter :: Component Props
-mkCounter = component "Counter" \props -> Hooks.do 
+mkCounter = component "Counter" \props -> React.do 
     count /\ setCount <- useState' 0
-
     pure do
       div_
         [ p_ [text $ i "You clicked " count " times"]
         , button
-            { onClick: handler_ do 
-                let next = step count props.counterType
-                setCount next
-                props.onClick next
+            { onClick: onClickHandler count setCount props
             , children: [ text props.label ]   
             } 
         ]
+
+onClickHandler :: Int -> (Int -> Effect Unit) -> Props -> EventHandler
+onClickHandler count setCount props = handler_ do 
+  let next = step count props.counterType
+  setCount next
+  props.onClick next
 
 step :: Int -> CounterType -> Int
 step n counterType = case counterType of
